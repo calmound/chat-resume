@@ -1,0 +1,68 @@
+.sider {
+  width: 250px;
+  background-color: #bfdff0;
+  padding: 12px;
+  padding-top: 24px;
+  position: relative;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  padding-bottom: 40px;
+  overflow: auto;
+}
+
+.title {
+  font-size: 18px;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.desc {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.img {
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tips {
+  font-size: 12px;
+  line-height: 16px;
+  color: #2e2525;
+  font-weight: bold;
+  text-align: justify;
+}
+
+.tips1 {
+  @extend .tips;
+  margin-bottom: 12px;
+}
+
+.tips2 {
+  @extend .tips;
+  margin-bottom: 24px;
+}
+
+.button {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.sider :global {
+  .ant-form-item {
+    margin-bottom: 8px;
+  }
+  .ant-form-item-label {
+    padding-bottom: 0;
+    label {
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+  .ant-input-number {
+    width: 100%;
+  }
+}

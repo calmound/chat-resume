@@ -1,0 +1,60 @@
+.main {
+  background-color: #fff;
+  max-width: 960px;
+  min-width: 600px;
+  height: 90vh;
+  width: 90vw;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 100px 40px rgba(0, 0, 0, 0.01);
+  position: relative;
+  display: flex;
+}
+
+.header {
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.025);
+  line-height: 50px;
+  padding-left: 24px;
+  font-weight: 600;
+  color: #3f3f3f;
+
+  .setting {
+    cursor: pointer;
+    position: absolute;
+    right: 24px;
+    top: 8px;
+  }
+}
+
+.content {
+  box-sizing: border-box;
+  flex: 1;
+
+  .message {
+    padding: 24px 32px;
+    margin-bottom: 12px;
+    overflow: auto;
+    height: calc(100% - 60px);
+    .avatar {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.textarea-box {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 24px;
+  .textarea {
+    height: 100px;
+    resize: none;
+  }
+  .button {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+  }
+}
