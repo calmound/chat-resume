@@ -38,7 +38,7 @@ export default function Sider({
           count: 1,
         })
       );
-    } else if (limitFetch?.count <= 3) {
+    } else if (!limitFetch?.count || limitFetch?.count <= 10) {
       localStorage.setItem(
         'limitFetch',
         JSON.stringify({
