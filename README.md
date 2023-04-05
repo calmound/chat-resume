@@ -19,7 +19,7 @@
 
 1. 准备好你的 [OpenAI API Key](https://platform.openai.com/account/api-keys);
 2. 点击按钮开始部署：
-   [![Deploy with Vercel](https://vercel.com/button)](https%3A%2F%2Fvercel.com%2Fnew%2Fclone%3Frepository-url%3Dhhttps%3A%2F%2Fgithub.com%2Fcalmound%2Fchat-resume%26env%3DOPENAI_API_KEY%26project-name%3Dchat-resume%26repository-name%3Dchat-resume)，直接使用 Github 账号登陆即可，记得在环境变量页填入 API Key；
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=hhttps://github.com/calmound/chat-resume&env=OPENAI_API_KEY&project-name=chat-resume&repository-name=chat-resume)，直接使用 Github 账号登陆即可，记得在环境变量页填入 API Key；
 3. 部署完毕后，即可开始使用；
 
 ## 开发 Development
