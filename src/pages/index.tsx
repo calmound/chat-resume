@@ -14,6 +14,7 @@ import Sider from '@/components/Sider';
 
 import 'katex/dist/katex.min.css';
 import { QueryType } from '@/type';
+import QrCodeModal from '@/components/QrCodeModal';
 
 const TIME_OUT = 3000;
 enum ROLE {
@@ -57,8 +58,8 @@ export default function Home() {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [loading, setLoading] = useState(false);
   const [settingShow, setSetShow] = useState(false);
-  const [key, setKey] = useState('');
-  const [form] = Form.useForm();
+  const [apiKey, setKey] = useState('');
+  const [qrShow, setQrShow] = useState(false);
 
   const pageLoading = !useLoading();
 
@@ -84,7 +85,7 @@ export default function Home() {
       if (isNeedTitle) {
         content += `，在帮我想3个结合业务的其他中文名字，最好有一点个性`;
       }
-      content += `。技术栈是${techStacks}。需要介绍项目概览，项目概览不少于100字。需要介绍10个功能点。告诉我可以用什么技术实现什么功能，要详细一些，不少于10个方向。项目难点包含通过什么技术栈，解决什么问题或者实现了什么功能，最好能够让人眼前一亮，帮忙整理5个`;
+      content += `。技术栈是${techStacks}。需要介绍项目概览，项目概览不少于100字。需要介绍10个功能点。告诉我可以用什么技术实现什么功能，要详细一些，不少于7个方向。项目难点包含通过什么技术栈，解决什么问题或者实现了什么功能，最好能够让人眼前一亮，帮忙整理5个`;
       if (year) {
         content += `，简历希望符合${year}年工作经验`;
       }
@@ -97,12 +98,7 @@ export default function Home() {
             content,
           },
         ],
-        stream: true,
-        max_tokens: 3000,
-        n: 2,
-        temperature: 0.6,
-        frequency_penalty: 1.5,
-        presence_penalty: 1.5,
+        apiKey,
       };
       const res = await fetch('/api/openai', {
         method: 'POST',
@@ -171,10 +167,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={styles.main}>
-        <Sider onSend={handleSend} loading={loading} />
+        <Sider
+          onSend={handleSend}
+          loading={loading}
+          setQrShow={setQrShow}
+          hasKey={!!apiKey}
+        />
         <div className={styles['content']}>
           <div className={styles['header']}>
-            ChatResume
+            创建属于你的简历
             <Button
               className={styles['setting']}
               icon={<SettingOutlined />}
@@ -207,6 +208,7 @@ export default function Home() {
         {settingShow && (
           <SettingModal setSetShow={setSetShow} setKey={setKey} />
         )}
+        {qrShow && <QrCodeModal setQrShow={setQrShow} />}
       </main>
     </>
   );

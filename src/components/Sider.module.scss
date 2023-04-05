@@ -1,6 +1,6 @@
 .sider {
-  width: 250px;
-  background-color: #bfdff0;
+  width: 300px;
+  background-color: #93afea;
   padding: 12px;
   padding-top: 24px;
   position: relative;
@@ -11,15 +11,15 @@
 }
 
 .title {
-  font-size: 18px;
+  font-size: 32px;
   margin-bottom: 4px;
   font-weight: bold;
 }
 
 .desc {
   display: block;
-  font-size: 12px;
-  margin-bottom: 12px;
+  font-size: 16px;
+  margin-bottom: 24px;
 }
 
 .img {
@@ -29,7 +29,7 @@
 }
 
 .tips {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
   color: #2e2525;
   font-weight: bold;
@@ -38,12 +38,12 @@
 
 .tips1 {
   @extend .tips;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 .tips2 {
   @extend .tips;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .button {
@@ -53,12 +53,11 @@
 
 .sider :global {
   .ant-form-item {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
   .ant-form-item-label {
-    padding-bottom: 0;
     label {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: bold;
     }
   }

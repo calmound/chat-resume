@@ -1,15 +1,18 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { Configuration, CreateChatCompletionRequest, OpenAIApi } from 'openai';
 import { createParser } from 'eventsource-parser';
-import { NextRequest, NextResponse } from 'next/server';
-import { count } from 'console';
+import { NextResponse } from 'next/server';
 
 type Data = {
   name: string;
 };
 
 async function createStream(payload: any) {
-  let apiKey = process.env.OPENAI_API_KEY;
+  let apiKey = payload.apiKey || process.env.OPENAI_API_KEY;
+  console.log(
+    '%c [ apiKey ]-13',
+    'font-size:13px; background:pink; color:#bf2c9f;',
+    apiKey
+  );
+  delete payload.apiKey;
 
   try {
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -59,16 +62,17 @@ async function createStream(payload: any) {
 
 export default async function handler(req: Request, res: NextResponse) {
   try {
-    const { messages } = await req.json();
+    const { messages, apiKey } = await req.json();
 
     const payload = {
       model: 'gpt-3.5-turbo',
       messages,
+      apiKey,
       temperature: 0.7,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
-      max_tokens: 1000,
+      max_tokens: 3000,
       stream: true,
       n: 1,
     };
