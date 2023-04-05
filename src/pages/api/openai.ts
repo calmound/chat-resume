@@ -8,14 +8,14 @@ type Data = {
   name: string;
 };
 
-async function createStream(payload) {
+async function createStream(payload: any) {
   let apiKey = process.env.OPENAI_API_KEY;
 
   try {
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${'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'}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       method: 'POST',
       body: JSON.stringify(payload),

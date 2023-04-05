@@ -1,9 +1,5 @@
 import Head from 'next/head';
-import {
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import RemarkMath from 'remark-math';
 import RehypeKatex from 'rehype-katex';
@@ -17,6 +13,7 @@ import Loading from '@/components/Loading';
 import Sider from '@/components/Sider';
 
 import 'katex/dist/katex.min.css';
+import { QueryType } from '@/type';
 
 const TIME_OUT = 3000;
 enum ROLE {
@@ -58,15 +55,15 @@ export function PreCode(props: { children: any }) {
 
 export default function Home() {
   const [messages, setMessages] = useState<MessageType[]>([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [settingShow, setSetShow] = useState(false);
   const [key, setKey] = useState('');
   const [form] = Form.useForm();
 
   const pageLoading = !useLoading();
 
-  const handleSend = async (values) => {
-    setLoading(true)
+  const handleSend = async (values: QueryType) => {
+    setLoading(true);
     const controller = new AbortController();
 
     try {
@@ -80,18 +77,18 @@ export default function Home() {
       // const content = `请帮我把以下的关键内容填充为一篇简历的技术项目，项目名称是${title}，在帮我想一个和业务结合的其他名字。技术栈是${techStacks}。需要介绍项目概览，项目概览不少于100字。需要介绍10个功能点。需要告诉我可以用什么技术实现什么功能，希望比较详细，不少于15个方向，每条不低于40字。项目难点需要包含通过什么技术栈，解决什么问题或者实现了什么功能，帮忙整理5个。尽量避免在回答内容中出现可能在中国是敏感的内容，用markdown格式以分点叙述的形式输出`;
       // const content = `请帮我把以下的关键内容填充为一篇简历的技术项目，项目名称是${title}，业务方向是${business}，在帮我想3个结合业务的其他中文名字。技术栈是${techStacks}。需要介绍项目概览，项目概览不少于100字。需要介绍10个功能点。需要告诉我可以用什么技术实现什么功能，希望比较详细，不少于10个方向。项目难点需要包含通过什么技术栈，解决什么问题或者实现了什么功能，帮忙整理5个，简历希望符合${year}年工作经验。尽量避免在回答内容中出现可能在中国是敏感的内容，用markdown格式以分点叙述的形式输出`;
 
-      let content = `请帮我把以下的关键内容填充为一篇简历的技术项目，项目名称是${title}`
+      let content = `请帮我把以下的关键内容填充为一篇简历的技术项目，项目名称是${title}`;
       if (business) {
-        content += `，业务方向是${business}`
+        content += `，业务方向是${business}`;
       }
       if (isNeedTitle) {
-        content += `，在帮我想3个结合业务的其他中文名字`
+        content += `，在帮我想3个结合业务的其他中文名字，最好有一点个性`;
       }
-      content += `。技术栈是${techStacks}。需要介绍项目概览，项目概览不少于100字。需要介绍10个功能点。需要告诉我可以用什么技术实现什么功能，希望比较详细，不少于10个方向。项目难点需要包含通过什么技术栈，解决什么问题或者实现了什么功能，帮忙整理5个`
+      content += `。技术栈是${techStacks}。需要介绍项目概览，项目概览不少于100字。需要介绍10个功能点。告诉我可以用什么技术实现什么功能，要详细一些，不少于10个方向。项目难点包含通过什么技术栈，解决什么问题或者实现了什么功能，最好能够让人眼前一亮，帮忙整理5个`;
       if (year) {
-        content += `，简历希望符合${year}年工作经验`
+        content += `，简历希望符合${year}年工作经验`;
       }
-      content += `。尽量避免在回答内容中出现可能在中国是敏感的内容，用markdown格式以分点叙述的形式输出。`
+      content += `。尽量避免在回答内容中出现可能在中国是敏感的内容，用markdown格式以分点叙述的形式输出。`;
 
       const payload = {
         messages: [
@@ -105,7 +102,7 @@ export default function Home() {
         n: 2,
         temperature: 0.6,
         frequency_penalty: 1.5,
-        presence_penalty: 1.5
+        presence_penalty: 1.5,
       };
       const res = await fetch('/api/openai', {
         method: 'POST',
@@ -119,7 +116,7 @@ export default function Home() {
       const finish = () => {
         // options?.onMessage(responseText, true);
         // controller.abort();
-        setLoading(false)
+        setLoading(false);
       };
 
       if (res.ok) {
@@ -205,8 +202,7 @@ export default function Home() {
                 </div>
               </div>
             );
-          }
-          )}
+          })}
         </div>
         {settingShow && (
           <SettingModal setSetShow={setSetShow} setKey={setKey} />
